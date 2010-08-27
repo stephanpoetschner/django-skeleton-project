@@ -1,8 +1,0 @@
-Django==1.2
-django-extensions==0.5
-django-staticfiles==0.3
-django-pagination==1.0
-django-mailer==0.1
-django-uni-form==0.7
-easy-thumbnails==1.0
-fabric==0.9

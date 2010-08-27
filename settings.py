@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Django settings
 
 import os.path
 import posixpath
@@ -120,7 +119,7 @@ TEMPLATE_DIRS = (
 )
 
 CONTEXT_SETTINGS = (
-    "DEBUG", "MEDIA_URL",
+    "DEBUG", "MEDIA_URL", "STATIC_URL",
 )
 
 CONTEXT_REQUEST_VARS = (
@@ -150,11 +149,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     
     #external
+    'compressor',
     'django_extensions',
     'pagination',
     'staticfiles',
     'easy_thumbnails',
     'uni_form',
+    
+    #internal
+    'core',
 )
 
 # Subject-line prefix for e-mail messages sent with django.core.mail.mail_admins or django.core.mail.mail_managers. You'll probably want to include the trailing space.
