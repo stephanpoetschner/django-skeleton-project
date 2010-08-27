@@ -5,3 +5,4 @@ django-pagination==1.0
 django-mailer==0.1
 django-uni-form==0.7
 easy-thumbnails==1.0
+fabric==0.9
