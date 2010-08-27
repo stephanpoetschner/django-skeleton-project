@@ -96,6 +96,12 @@ STATIC_URL = "/assets/static/"
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
 
+# autoload this templatetags in every template
+TEMPLATE_TAGS = ( "uni_form.templatetags.uni_form_tags",
+                  "django.templatetags.i18n",
+                  "easy_thumbnails.templatetags.thumbnail",
+)
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
