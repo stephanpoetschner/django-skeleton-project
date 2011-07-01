@@ -32,7 +32,7 @@
 4.  Go through the following files, editing as necessary:
 
     *   `settings.py`
-        * Update SECRET_KEY (call <./manage.py generate_secret_key>)
+        * Update SECRET_KEY (call `./manage.py generate_secret_key`)
     *   `urls.py`
     *   `requirements/project.txt`
     *   `templates/base.html`
