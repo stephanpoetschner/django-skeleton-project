@@ -143,6 +143,11 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'context_processors.request_params',
     'context_processors.site_url',
 ]
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 INSTALLED_APPS = (
     'django.contrib.admin',
