@@ -17,7 +17,8 @@
         # Remove .empty files, used to make Hg track otherwise-empty dirs.
         $ find . -name '.empty' -exec rm {} \;
 
-        # clear .gitignore
+        # edit or clear .gitignore
+        $ vi .gitignore
         $ echo > .gitignore
 
 3.  Remove the pointer to the GitHub project:
@@ -29,15 +30,18 @@
 
         $ git config remote.origin.url 'git@github.com:USERNAME/PROJECT.git'
 
-4.  Go through the following files, editing as necessary:
+4.  Ensure current (working) version numbers are documented
+
+    * `pip freeze > requirements/base.txt`
+
+5.  Go through the following files, editing as necessary:
 
     *   `settings.py`
         * Update SECRET_KEY (call `./manage.py generate_secret_key`)
     *   `urls.py`
     *   `requirements/project.txt`
-    *   `templates/base.html`
 
-7.  Install the basic project requirements:
+6.  Install the basic project requirements:
 
         $ easy_install pip
         $ pip install -r requirements/project.txt
@@ -45,6 +49,10 @@
     As you edit your `requirements/project.txt` file, you can run that last command again;
     `pip` will realise which packages you’ve added and will ignore those already
     installed.
+
+7.  Commit changes
+
+    * `git commit -a`
 
 
 ## Managing Your Site
