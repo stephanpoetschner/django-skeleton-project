@@ -139,9 +139,9 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
 
-    'context_processors.global_settings',
-    'context_processors.request_params',
-    'context_processors.site_url',
+    'core.context_processors.global_settings',
+    'core.context_processors.request_params',
+    'core.context_processors.site_url',
 ]
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
