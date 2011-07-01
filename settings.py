@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import os.path
 import posixpath
+
+from path import path
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'x4$@%buj5c@g6@m(fzhtsv+2z9z88(a0a6_p__yjd)nimv#a)l'
@@ -10,7 +11,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = DEBUG
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = path(__file__).abspath().realpath().dirname()
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -57,7 +58,7 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-ugettext = lambda s: s # rather hackish but suggested by... 
+ugettext = lambda s: s # rather hackish but suggested by...
 ## ... http://docs.djangoproject.com/en/1.1/topics/i18n/deployment/#how-django-discovers-language-preference
 ## to prevent circular dependancies
 LANGUAGES = (
@@ -71,15 +72,15 @@ SITE_ID = 1
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'assets', 'uploaded')
+MEDIA_ROOT = PROJECT_ROOT / 'assets' / 'uploaded' / '' # ensure trailing slash
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "assets", "static")
+STATIC_ROOT = PROJECT_ROOT / "assets" / "static" / '' # ensure trailing slash
 
 # Additional directories which hold static files
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, "assets"),
+    PROJECT_ROOT / "assets",
 ]
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -114,14 +115,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
+
     "pagination.middleware.PaginationMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, "templates"),
+    PROJECT_ROOT / "templates",
 )
 
 CONTEXT_SETTINGS = (
@@ -159,14 +160,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.markup',
     'django.contrib.messages',
-    
+
     #external
     'compressor',
     'django_extensions',
     'pagination',
     'easy_thumbnails',
     'uni_form',
-    
+
     #internal
     'core',
 )
