@@ -15,7 +15,6 @@ PIL
 #django specific
 django-compressor
 django-extensions
-django-staticfiles
 django-pagination
 django-mailer
 django-uni-form

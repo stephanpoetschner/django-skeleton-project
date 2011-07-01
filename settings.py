@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'django.contrib.markup',
     'django.contrib.messages',
     
@@ -158,7 +159,6 @@ INSTALLED_APPS = (
     'compressor',
     'django_extensions',
     'pagination',
-    'staticfiles',
     'easy_thumbnails',
     'uni_form',
     
