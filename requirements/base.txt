@@ -3,7 +3,9 @@ ipython
 ipdb
 fabric
 Django
+requests
 path.py
+urlobject
 
 #dependencies
 # dep for django-compressor
