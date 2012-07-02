@@ -1,24 +1,29 @@
-from __future__ import with_statement
+# coding: utf-8
+import sys, os
+
 from fabric.api import *
+from fabric import colors
+from fabric.contrib.console import confirm
+from fabric.contrib.project import rsync_project
 from fabric.contrib.console import confirm
 
-env.hosts = ['root@myserver.com']
+from path import path
+
+import settings
+
 env.shell = "/bin/bash -li -c"
 
-def deploy():
-    pass
+env.hosts = [ "root@wroot@myserver.com", ]
+env.local_database_config = settings.DATABASES['default']
 
-def init_data():
-    local('./manage.py runscript live_auth live_sites')
 
-def init_testdata():
-    #local('./manage.py runscript test_auth')
-    pass
+def reinit_database():
+    local(u"dropdb %(NAME)s" % env.local_database_config)
+    local(u"createdb --owner %(USER)s %(NAME)s" % env.local_database_config)
 
 def reset():
-    local('rm ./dev.db || true')
+    reinit_database()
     local('./manage.py clean_pyc')
     local('./manage.py syncdb --noinput')
-    init_data()
-    init_testdata()
+    local('./manage.py migrate --noinput')
 
