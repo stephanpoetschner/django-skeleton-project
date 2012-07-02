@@ -119,7 +119,7 @@ LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = PROJECT_ROOT / 'debug-mails'
+EMAIL_FILE_PATH = PROJECT_ROOT / '..' / 'debug-mails'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
