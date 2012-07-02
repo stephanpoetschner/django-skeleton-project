@@ -27,8 +27,7 @@
               local   all         all         trust
               host    all         all         127.0.0.1/32          trust
 
-      Restart postgres: `/etc/init.d/postgresql restart`
-      Log user 'postgres' out: `logout`
+      Restart postgres: `/etc/init.d/postgresql restart` and logout user 'postgres': `logout`
 
 5.  Install PIL dependencies
 
