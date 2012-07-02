@@ -34,15 +34,15 @@
 
 4.  Install base requirements
 
+        $ easy_install pip
         $ pip install -r requirements/base.txt
 
 5.  Ensure current (working) version numbers are documented
 
         $ pip freeze > requirements/base.txt
 
-6.  Install the basic project requirements:
+6.  Install the project specific requirements:
 
-        $ easy_install pip
         $ pip install -r requirements/project.txt
 
     As you edit your `requirements/project.txt` file, you can run that last command again;
