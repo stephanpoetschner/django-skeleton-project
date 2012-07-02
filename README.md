@@ -1,6 +1,6 @@
 # MyProject
 
-## Installation from skeleton project (remove these lines after executing)
+## Installation from skeleton project
 
 1.  Make, enter and activate a virtualenv:
 
