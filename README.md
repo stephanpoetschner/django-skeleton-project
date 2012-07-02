@@ -116,10 +116,9 @@
 3.  Copy `localsettings.py.skel` to `localsettings.py`
 
 4.  Go through the following files, editing as necessary:
-
-   * `localsettings.py`
-   * `settings.py`
-       * Update SECRET_KEY (call `./manage.py generate_secret_key`)
+    * `localsettings.py`
+    * `settings.py`
+        * Update SECRET_KEY (call `./manage.py generate_secret_key`)
 
 5.  Create initial postgres-database
 
@@ -141,15 +140,10 @@
         $ ./manage.py test
 
 3.  Add data
-
     * add test data or …
 
         $ ./manage.py loaddata apps/profiles/fixtures/profiles.json
         $ …
-
-    * … import data from db2 system
-
-        $ ./manage.py db2sync
 
 4.  Start the devserver
 
