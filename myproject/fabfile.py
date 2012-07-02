@@ -43,6 +43,9 @@ def reset():
     local('./manage.py syncdb --noinput')
     local('./manage.py migrate --noinput')
 
+    puts(u"Collecting static files")
+    run('%s/python manage.py collectstatic --noinput' % venv_path)
+
 
 def deploy(stage="preview"):
     if stage not in env.stages.keys():
