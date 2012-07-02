@@ -112,7 +112,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-
 ROOT_URLCONF = 'urls'
 
 LOGIN_URL = reverse_lazy('login')
@@ -126,9 +125,6 @@ AUTHENTICATION_BACKENDS = (
     'auth.backends.EmailModelBackend',
 )
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
-
-# Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
     PROJECT_ROOT / "templates",
