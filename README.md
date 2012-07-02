@@ -131,7 +131,7 @@
 
         $ fab reset
 
-        or
+    or
 
         $ ./manage.py syncdb
 
@@ -139,12 +139,6 @@
 
         $ ./manage.py test
 
-3.  Add data
-    * add test data or …
-
-        $ ./manage.py loaddata apps/profiles/fixtures/profiles.json
-        $ …
-
-4.  Start the devserver
+3.  Start the devserver
 
         $ ./manage.py runserver
