@@ -49,7 +49,7 @@
 
 7.  Commit changes to new repository
 
-    * `git commit -a`
+        $ git commit -a
 
 
 
