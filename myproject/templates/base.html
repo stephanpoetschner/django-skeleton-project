@@ -1,4 +1,5 @@
 {% load compress %}
+{% load i18n %}
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -12,7 +13,7 @@
        Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>{% block site_title %}{% endblock %}Djangoproject</title>
+  <title>{% block site_title %}{% endblock %}{% trans "MyProject" %}</title>
   <meta name="description" content="">
 
   <!--  Mobile Viewport Fix
