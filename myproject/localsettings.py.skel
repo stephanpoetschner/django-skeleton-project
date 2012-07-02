@@ -1,0 +1,40 @@
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+MEDIA_SERVE = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+# SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Subject-line prefix for e-mail messages sent with django.core.mail.mail_admins or django.core.mail.mail_managers. You'll probably want to include the trailing space.
+EMAIL_SUBJECT_PREFIX = u'[MyProject] '
+
+# The host to use for sending e-mail.
+EMAIL_HOST = u'localhost'
+
+# Password to use for the SMTP server defined in EMAIL_HOST. This setting is used in conjunction with EMAIL_HOST_USER when authenticating to the SMTP server. If either of these settings is empty, Django won't attempt authentication.
+EMAIL_HOST_PASSWORD = ''
+# Username to use for the SMTP server defined in EMAIL_HOST. If empty, Django won't attempt authentication.
+EMAIL_HOST_USER = ''
+
+# Port to use for the SMTP server defined in EMAIL_HOST.
+EMAIL_PORT = 25
+# Whether to use a TLS (secure) connection when talking to the SMTP server.
+EMAIL_USE_TLS = False

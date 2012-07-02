@@ -11,8 +11,10 @@
 
 2.  Clone this repo into a sub-directory of the new virtualenv:
 
-        $ git clone 'git://github.com/stephanpoetschner/django-skeleton-project.git' myproject
-        $ cd myproject/
+        $ git clone 'git://github.com/stephanpoetschner/django-skeleton-project.git' <project_folder>
+        $ cd <project_folder>/
+
+        $ git mv <my_project> <custom_project_name>
 
         # Remove .empty files, used to make Hg track otherwise-empty dirs.
         $ find . -name '.empty' -exec rm {} \;

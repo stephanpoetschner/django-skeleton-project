@@ -1,0 +1,2 @@
+{% load i18n %}{% blocktrans %}Willkommensnachricht{% endblocktrans %}
+{{user.first_name}} {{user.last_name}}

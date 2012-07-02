@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-
 import posixpath
-
 from path import path
+import sys
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'x4$@%buj5c@g6@m(fzhtsv+2z9z88(a0a6_p__yjd)nimv#a)l'
+from django.core.urlresolvers import reverse_lazy
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-SERVE_MEDIA = DEBUG
+SERVE_MEDIA = False
+
 
 PROJECT_ROOT = path(__file__).abspath().realpath().dirname()
+sys.path.insert(0, PROJECT_ROOT / "apps")
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'woj)6x+lm$yz(bxh746fz9z064=iecd(v)=qc7fxij$=0e2mdw'
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -21,15 +24,18 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': PROJECT_ROOT / 'dev.db',
     }
 }
 
+SITE_ID = 1
+DEFAULT_HTTP_PROTOCOL = "http"
+
+
+PAGINATION_DEFAULT_PAGINATION = 25
+PAGINATION_DEFAULT_WINDOW = 2
+PAGINATION_DEFAULT_ORPHANS = 0
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -42,15 +48,18 @@ TIME_ZONE = 'Europe/Vienna'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-AT'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
+# calendars according to the current locale.
 USE_L10N = True
+
+# If you set this to False, Django will not use timezone-aware datetimes.
+USE_TZ = False
 
 ugettext = lambda s: s # rather hackish but suggested by...
 ## ... http://docs.djangoproject.com/en/1.1/topics/i18n/deployment/#how-django-discovers-language-preference
@@ -60,47 +69,31 @@ LANGUAGES = (
     ('de', ugettext('German')),
 )
 
-DEFAULT_HTTP_PROTOCOL = 'http'
-
-SITE_ID = 1
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = PROJECT_ROOT / 'assets' / 'uploaded' / '' # ensure trailing slash
+MEDIA_URL = '/assets/uploaded/'
 
-# Absolute path to the directory that holds static files like app media.
-# Example: "/home/media/media.lawrence.com/apps/"
 STATIC_ROOT = PROJECT_ROOT / "assets" / "static" / '' # ensure trailing slash
+STATIC_URL = '/assets/static/'
 
-# Additional directories which hold static files
-STATICFILES_DIRS = [
-    PROJECT_ROOT / "assets",
-]
+STATICFILES_DIRS = (
+    PROJECT_ROOT / "static",
+)
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/assets/uploaded'
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 
-# URL that handles the static files like app media.
-# Example: "http://media.lawrence.com"
-STATIC_URL = "/assets/static/"
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
-
-# autoload this templatetags in every template
-TEMPLATE_TAGS = ( "uni_form.templatetags.uni_form_tags",
-                  "django.templatetags.i18n",
-                  "easy_thumbnails.templatetags.thumbnail",
+    'compressor.finders.CompressorFinder',
 )
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,43 +102,60 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    # Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    "pagination.middleware.PaginationMiddleware",
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+
+    'pagination.middleware.PaginationMiddleware',
 )
 
+
+
 ROOT_URLCONF = 'urls'
+
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = PROJECT_ROOT / 'debug-mails'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'auth.backends.EmailModelBackend',
+)
+AUTH_PROFILE_MODULE = 'profiles.UserProfile'
+
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
     PROJECT_ROOT / "templates",
 )
 
 CONTEXT_SETTINGS = (
-    "DEBUG", "MEDIA_URL", "STATIC_URL",
+    "DEBUG",
 )
 
-CONTEXT_REQUEST_VARS = (
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = [
-    "django.core.context_processors.auth",
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
-    'core.context_processors.global_settings',
-    'core.context_processors.request_params',
-    'core.context_processors.site_url',
-]
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "core.context_processors.global_settings",
+    "core.context_processors.site_url",
+
 )
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.humanize',
@@ -161,39 +171,31 @@ INSTALLED_APPS = (
     'pagination',
     'easy_thumbnails',
     'uni_form',
+    'south',
 
     #internal
     'core',
+    'auth',
+    'profiles',
 )
-
-# Subject-line prefix for e-mail messages sent with django.core.mail.mail_admins or django.core.mail.mail_managers. You'll probably want to include the trailing space.
-EMAIL_SUBJECT_PREFIX = u'[Django-Project] '
-
-# The host to use for sending e-mail.
-EMAIL_HOST = u'localhost'
-
-# Password to use for the SMTP server defined in EMAIL_HOST. This setting is used in conjunction with EMAIL_HOST_USER when authenticating to the SMTP server. If either of these settings is empty, Django won't attempt authentication.
-EMAIL_HOST_PASSWORD = ''
-# Username to use for the SMTP server defined in EMAIL_HOST. If empty, Django won't attempt authentication.
-EMAIL_HOST_USER = ''
-
-# Port to use for the SMTP server defined in EMAIL_HOST.
-EMAIL_PORT = 25
-# Whether to use a TLS (secure) connection when talking to the SMTP server.
-EMAIL_USE_TLS = False
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
+# the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
@@ -210,6 +212,6 @@ LOGGING = {
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
 try:
-    from local_settings import *
+    from localsettings import *
 except ImportError:
     pass

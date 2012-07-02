@@ -1,0 +1,38 @@
+{% extends "content.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block main %}
+
+    <form class="login" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    <fieldset>
+        <legend>{% trans "Login" %}</legend>
+
+        {% csrf_token %}
+
+        <div>{{form|as_uni_form}}</div>
+        <div class="ctrlHolder">
+            <button type="submit">{% trans "Anmelden" %}</button>
+        </div>
+
+        <input type="hidden" name="next" value="{{next}}" />
+
+    </fieldset>
+    </form>
+    <hr />
+
+    <p class="right">
+        <a href="{% url 'password_reset' %}">
+        {% trans "Hast du dein Passwort vergessen?" %}</a>
+    </p>
+    <p>
+    zusätzliche Parameter:
+        <ul>
+            <li>site: {{site}}</li>
+            <li>site_name: {{site_name}}</li>
+        </ul>
+    </p>
+    <div class="sep">&nbsp;</div>
+{% endblock %}
