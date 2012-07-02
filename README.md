@@ -32,11 +32,15 @@
 
         $ git config remote.origin.url 'git@github.com:USERNAME/PROJECT.git'
 
-4.  Ensure current (working) version numbers are documented
+4.  Install base requirements
+
+        $ pip install -r requirements/base.txt
+
+5.  Ensure current (working) version numbers are documented
 
         $ pip freeze > requirements/base.txt
 
-5.  Install the basic project requirements:
+6.  Install the basic project requirements:
 
         $ easy_install pip
         $ pip install -r requirements/project.txt
