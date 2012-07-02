@@ -16,7 +16,6 @@
         $ createuser -s -E -P <my_db_user>   # Create database user named 'my_db_user' (superuser, encrypted password, password prompt)
 
 4.  Allow user to connect and restart postgresql
-
     * Edit `/etc/postgresql/9.1/main/pg_hba.conf`
     * Add the following line (so your user is allowed to connect from localhost) to `/etc/postgresql/9.1/main/pg_hba.conf`
       IMPORTANT: Do not blindly copy these lines at the end of the file. Rather copy it into the appropriate section saying: `# Put your actual configuration here`
