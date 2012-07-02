@@ -20,12 +20,12 @@
     * Add the following line (so your user is allowed to connect from localhost) to `/etc/postgresql/9.1/main/pg_hba.conf`
       IMPORTANT: Do not blindly copy these lines at the end of the file. Rather copy it into the appropriate section saying: `# Put your actual configuration here`
 
-          local my_db_user my_db_user password
+              local my_db_user my_db_user password
 
       … or on your development machine
 
-          local   all         all         trust
-          host    all         all         127.0.0.1/32          trust
+              local   all         all         trust
+              host    all         all         127.0.0.1/32          trust
 
     * Restart postgres: `/etc/init.d/postgresql restart`
     * Log user 'postgres' out: `logout`
