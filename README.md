@@ -117,9 +117,9 @@
 
 4.  Go through the following files, editing as necessary:
 
-   * `localsettings.py`
-   * `settings.py`
-     * Update SECRET_KEY (call `./manage.py generate_secret_key`)
+    * `localsettings.py`
+    * `settings.py`
+        * Update SECRET_KEY (call `./manage.py generate_secret_key`)
 
 5.  Create initial postgres-database
 
