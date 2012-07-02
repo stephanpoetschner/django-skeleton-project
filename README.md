@@ -1,6 +1,51 @@
 # MyProject
 
-## Installation from skeleton project
+## Pre-Requirements
+
+1.  Install python 2.7, setuptools and virtualenvwrapper
+
+        $ sudo apt-get install python2.7 python-dev python-setuptools virtualenvwrapper
+
+2.  Install postgreSQL
+
+        $ sudo apt-get install postgresql-server-dev-9.1
+
+3.  Create database user
+
+        $ sudo su - postgres                 # Switch to user postgres
+        $ createuser -s -E -P <my_db_user>   # Create database user named 'my_db_user' (superuser, encrypted password, password prompt)
+
+4.  Allow user to connect and restart postgresql
+
+    * Edit `/etc/postgresql/9.1/main/pg_hba.conf`
+    * Add the following line (so your user is allowed to connect from localhost) to `/etc/postgresql/9.1/main/pg_hba.conf`
+      IMPORTANT: Do not blindly copy these lines at the end of the file. Rather copy it into the appropriate section saying: `# Put your actual configuration here`
+
+          local my_db_user my_db_user password
+
+      … or on your development machine
+
+          local   all         all         trust
+          host    all         all         127.0.0.1/32          trust
+
+    * Restart postgres: `/etc/init.d/postgresql restart`
+    * Log user 'postgres' out: `logout`
+
+5.  Install PIL dependencies
+
+        $ sudo apt-get install libjpeg8 libjpeg8-dev libfreetype6 libfreetype6-dev zlib1g-dev
+
+
+    Ubuntu has it's libraries where PIL does not find it, so you will have to make some link to them so PIL can be installed:
+
+        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
+        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
+        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
+
+    (see also http://jj.isgeek.net/2011/09/install-pil-with-jpeg-support-on-ubuntu-oneiric-64bits/)
+
+
+## Fork from skeleton project
 
 1.  Make, enter and activate a virtualenv:
 
@@ -54,52 +99,6 @@
 7.  Commit changes to new repository
 
         $ git commit -a
-
-
-
-## Pre-Requirements
-
-1.  Install python 2.7, setuptools and virtualenvwrapper
-
-        $ sudo apt-get install python2.7 python-dev python-setuptools virtualenvwrapper
-
-2.  Install postgreSQL
-
-        $ sudo apt-get install postgresql-server-dev-9.1
-
-3.  Create database user
-
-        $ sudo su - postgres                 # Switch to user postgres
-        $ createuser -s -E -P <my_db_user>   # Create database user named 'my_db_user' (superuser, encrypted password, password prompt)
-
-4.  Allow user to connect and restart postgresql
-
-   * Edit `/etc/postgresql/9.1/main/pg_hba.conf`
-   * Add the following line (so your user is allowed to connect from localhost) to `/etc/postgresql/9.1/main/pg_hba.conf`
-     IMPORTANT: Do not blindly copy these lines at the end of the file. Rather copy it into the appropriate section saying: `# Put your actual configuration here`
-
-        local my_db_user my_db_user password
-
-     … or on your development machine
-
-        local   all         all         trust
-        host    all         all         127.0.0.1/32          trust
-
-   * Restart postgres: `/etc/init.d/postgresql restart`
-   * Log user 'postgres' out: `logout`
-
-5.  Install PIL dependencies
-
-        $ sudo apt-get install libjpeg8 libjpeg8-dev libfreetype6 libfreetype6-dev zlib1g-dev
-
-
-    Ubuntu has it's libraries where PIL does not find it, so you will have to make some link to them so PIL can be installed:
-
-        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
-        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
-        $ sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
-
-    (see also http://jj.isgeek.net/2011/09/install-pil-with-jpeg-support-on-ubuntu-oneiric-64bits/)
 
 
 ## Installation
