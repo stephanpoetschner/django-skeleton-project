@@ -1,10 +1,12 @@
 #general
-ipython
 ipdb
-fabric
+ipython
+Fabric
 Django
 requests
 path.py
+psycopg2
+python-dateutil
 urlobject
 
 #dependencies
@@ -13,11 +15,18 @@ BeautifulSoup
 # dep for easy-thumbnails
 PIL
 
+# dep for requests
+certifi==0.0.8
+chardet==1.0.1
+pycrypto==2.5
+ssh==1.7.13
+
 
 #django specific
+django-castor
 django-compressor
 django-extensions
 django-pagination
-django-mailer
 django-uni-form
 easy-thumbnails
+South
