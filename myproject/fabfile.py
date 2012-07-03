@@ -86,6 +86,8 @@ def deploy(stage="preview"):
 
 def prepare_export():
     local(u"git clone %s %s" % (env.local_project_root, env.deploy_dir))
+    local(u"cp %s/requirements.txt %s" % (env.local_project_root,
+                                      env.deploy_src_dir))
     local(u"cd %s && git log > %s" % (env.local_project_root,
                                       env.deploy_src_dir / u'release.txt'))
 

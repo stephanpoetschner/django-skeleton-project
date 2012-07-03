@@ -78,18 +78,14 @@
 4.  Install base requirements
 
         $ easy_install pip
-        $ pip install -r requirements/base.txt
+        $ pip install -r requirements.txt
 
 5.  Ensure current (working) version numbers are documented
 
-        $ pip freeze > requirements/base.txt
+        $ pip freeze > requirements.txt
 
-6.  Install the project specific requirements:
-
-        $ pip install -r requirements/project.txt
-
-    As you edit your `requirements/project.txt` file, you can run that last command again;
-    `pip` will realise which packages you’ve added and will ignore those already
+    As you edit your `requirements.txt` file, you can run that install command again;
+    `pip install` will realise which packages you’ve added and will ignore those already
     installed.
 
 6.  Delete this subsection of the `README.md` file
