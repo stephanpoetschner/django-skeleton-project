@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = False
+ENABLE_ERROR_VIEWS = False
 
 
 PROJECT_ROOT = path(__file__).abspath().realpath().dirname()

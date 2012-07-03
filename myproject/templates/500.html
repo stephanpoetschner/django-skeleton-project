@@ -1,7 +1,12 @@
-{% extends "cms_3cols.html" %}
-
-{% block head_title %}{% trans "Server Error" %}{% endblock %}
-
-{% block body %}
-    <p>{% trans "We're sorry but a server error has occurred. We've been notified and will look into it as soon as possible." %}</p>
-{% endblock %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans "A Server Error" %}</title>
+</head>
+<body>
+    <p>
+    {% trans "We're sorry but a server error has occurred. We've been notified and will look into it as soon as possible." %}
+    </p>
+</body>
+<html>
