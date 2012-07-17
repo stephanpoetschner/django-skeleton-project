@@ -1,5 +1,6 @@
 # coding: utf-8
-
+from path import path
+PROJECT_ROOT = path(__file__).abspath().realpath().dirname()
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
