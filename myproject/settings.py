@@ -183,6 +183,7 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+LOGGING_PATH = PROJECT_ROOT / '..' / 'logs' / 'application.log'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -201,12 +202,12 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
         'file_debug': {
-            'level': 'DEBUG',
+            'level': 'WARN',
             'class': 'logging.handlers.WatchedFileHandler',
             'formatter': 'verbose',
-            'filename':  PROJECT_ROOT, '..', 'logs', 'application.log',
+            'filename':  LOGGING_PATH,
         },
     },
     'loggers': {
