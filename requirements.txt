@@ -1,4 +1,7 @@
 #general
+nose
+sphinx
+
 ipdb
 ipython
 Fabric
