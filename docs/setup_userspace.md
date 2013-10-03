@@ -52,7 +52,7 @@ Create folders interfacing with the environment
     $ wget https://pypi.python.org/packages/source/s/setuptools/setuptools-1.0.tar.gz
     $ tar xzvf setuptools-1.0.tar.gz
     $ cd setuptools-1.0
-    $ python setup.py
+    $ python setup.py install
 
     $ easy_install pip
 
